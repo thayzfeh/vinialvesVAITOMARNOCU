@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Loja Online</title>
+    <link rel="shortcut icon" href="src/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/shop.css">
 </head>
 <body>
-    
+    <header>
+        <picture>
+            <source srcset="src/img/logo.png" media="(min-width: 751px)">
+            <img src="src/img/logo_small.png" alt="logo Responsiva" id="headerLogo">
+        </picture>
+        <div id="search">
+            <input type="text" name="search" id="textSearch" placeholder="O que estamos procurando?">
+            <img src="src/img/search.png" alt="Ícone de pesquisa">
+        </div>
+
+        <div id="profile">
+            <div class="triangle"></div>
+
+            <div class="info">
+                <div class="login">
+                    <img src="src/img/user.png" alt="Ícone de usuário">
+                    <p>Login <br> ou <br>Cadastro</p>
+                </div>
+
+                <div id="cart">
+                    <img src="src/img/cart.png" alt="carrinho">
+                    <div id="cartCounter">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html" >Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#" class="active">Loja Online</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="products">
+            <p>?</p>
+        </div>
+    </main>
+    <aside id="popup">
+        
+
+    </aside>
+    <script src="src/js/shop.js"></script>
 </body>
 </html>

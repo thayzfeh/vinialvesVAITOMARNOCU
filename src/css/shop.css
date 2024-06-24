@@ -130,6 +130,9 @@ header{
     right: -10px;
 
     border-radius: 50%;
+
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
 }
 
 
@@ -163,163 +166,139 @@ nav a.active{
     text-decoration: underline;
 }
 
-
 main{
-    background-image: url('../img/background.png'); /* Ajusta a imagem para cobrir toda a tela */
-    background-position: center; /* Centraliza a imagem no fundo */
-    background-repeat: no-repeat; /* Evita a repetição da imagem */
-
-    width: 100dvw;
-    height: fit-content;
-
-}
-
-
-.buttonsNavigator{
-    width: 60dvw;
-    height: 20dvh;
-    margin: auto;
-
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.button > button{
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(180deg, #85CDF5 0%, #4E788F 100%);
-    border: 1px solid #000000;
-    border-radius: 50%;
-    cursor: pointer;
-}
-.button > button > img {
-    width: 50px;
-    aspect-ratio: 1/1;
-}
-.button >p{
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-
-
-
-
-
-.promotionsCarroussel{
     width: 90dvw;
-    aspect-ratio: 1737/260;
-    margin: auto;
-    cursor: pointer;
-}
-.promotionsCarroussel > img{
-    width: 100%;
-    aspect-ratio: 1737/260;
-}
-
-
-.promotions{
-    width: 90dvw;
-    height: 25dvh;
-
     margin: auto;
     margin-top: 5dvh;
+}
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Open Sans',Arial, Helvetica, sans-serif;
-    font-size: 0.9em;
-}
-.news{
-    width: 50%;
 
-    display: flex;
-    justify-content: space-between;
-}
-.news > img{
-    width: 27%;
-    aspect-ratio: 6/7;
-    min-width: 124px;
-}
-.news > .resume{
-    width: 60%;
-    background-color: white;
-    padding: 2% 5%;
-    border: 1px solid black;
-    border-radius: 48px;
 
+
+.products{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+    justify-content: center;
 }
-.resume h3{
+.product{
+    width: 18%;
+    flex: 1 1 calc(25% - 40px);
+    max-width: 200px;
+    box-sizing: border-box;
+}
+.productImageDiv{
+    position: relative;
+    display: inline-block;
+    width: 100%;
     text-align: center;
 }
-.resume span{
-    color: blue;
-    text-decoration: underline;
+.productImage{
+    width: 200px;
+    aspect-ratio: 1/1;
+
+}
+img.buy{
+    width: 50px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+}
+img.buy:hover{
+    background-color: rgba(0, 0, 0, 0.363);
+    cursor: pointer;
+}
+img.buy:active{
+    background-color: rgba(0, 0, 0, 0.514);
+}
+
+p{
+    font-family: 'Open Sans',Arial, Helvetica, sans-serif;
 }
 
 
+p.productPrice{
+    font-weight: bold;
+}
 
-.promotionImages{
-    width: 30%;
-    height: 100%;
 
+aside.show{
+    top: 50%;
+    opacity: 1;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
+    visibility: visible;
+    transform: translate(-50%, -50%);
 }
-.promotionImages > .promotion{
-    width: 100%;
 
+aside{
+    display: none;
+    width: 30dvw;
+    height: 70dvh;
+    position: fixed;
+    margin: auto;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
+    border-radius: 40px;
+    border-bottom: #85CDF5 40px solid;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out; 
 }
-.promotion > img{
-    width: 40px;
-    aspect-ratio: 1/1;
+
+
+aside h1{
+    font-family: 'Open Sans',Arial, Helvetica, sans-serif;
 }
-.promotion > p{
+span.bold{
     font-weight: bold;
-    text-align: end;
+}
+.hidePopup{
+    background-color: red;
+    border: none;
+    font-size: 1.2em;
+    float: right;
+    color: white;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.popupContent{
+    text-align: center;
+    width: 100%;
+}
+.popupContent > p{
+    text-align: left;
+    margin-left: 20px;
+}
+.popupContent >img{
+    width: 60%;
 }
 
-
-
+@media (max-width: 950px) {
+    .product {
+        flex: 1 1 calc(40% - 20px);
+        max-width: calc(30% - 20px);
+    }
+}
+@media (max-width: 800px) {
+    .product {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
 
 
 @media only screen and (max-width: 500px) {
-
-    .promotions{
-        flex-direction: column;
-    }
-    .promotions > .news{
-        width: 90dvw;
-        justify-content: center;
-    }
-    .promotionImages{
-        width: 90dvw;
-        flex-wrap: wrap;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .promotion{
-        justify-content: center;
-    }
     #profile{
         margin: 0;
 
@@ -327,7 +306,12 @@ main{
     #headerLogo{
         margin: 0;
     }
-    
+    .product {
+        flex: 1 1 calc(100% - 20px);
+        max-width: calc(100% - 20px);
+    }
+
+
 }
 
 
@@ -347,26 +331,7 @@ main{
     }
 }
 
-
-@media (max-width: 620px) {
-
-    .buttonsNavigator{
-        padding-top: 2dvh;
-        height: fit-content;
-    }
-}
-
 @media (max-width: 750px) {
-    .news img{
-        display: none;
-        
-    }
-    .news .resume{
-        width: 70%;
-    }
-    .promotionsCarroussel{
-        width: 100dvw;
-    }
     #headerLogo{
         width: 100px;
         aspect-ratio: 1/1;
@@ -377,37 +342,24 @@ main{
     #profile{
         width: 30%;
     }
+    aside#popup{
+        width: 70dvw;
+    }
 }
 
 @media (max-width: 800px) {
     nav > ul{
         width: 80dvw;
     }
-    .buttonsNavigator{
-        width: 80dvw;
-        gap: 30px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
 }
-@media (max-width: 900px) {
-    .promotions{
-        height: 30dvh;
-    }
-}
-@media (max-width: 955px) {
-    .news{
-        width: 65%;
-    }
-    .promotion{
-        width: 100%;
-    }
-}
-@media (max-width: 1010px) {
+@media only screen and (max-width: 1010px) {
     #profile > .triangle{
         border: none;
     }
     #profile > .info{
         width: 100%;
+    }
+    aside{
+        width: 50dvw;
     }
 }
