@@ -29,6 +29,8 @@ header{
 
     padding: 0px;
 
+
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,12 +50,43 @@ header{
     font-size: 1.1em;
 }
 
+.autocomplete-suggestions {
+    background-color: #fff;
+    position: absolute;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 100%;
+    top: 48px;
+}
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+.autocomplete-suggestion:hover {
+    background-color: #ddd;
+}
+
+
+
+
+
 #search > img{
     width: 10%;
     aspect-ratio: 1/1;
 
 
     margin: 0 20px 0 0;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#search > img:hover{
+    background-color: #82828250;
+    
+}
+#search > img:active{
+    background-color: #82828294;
+    
 }
 
 

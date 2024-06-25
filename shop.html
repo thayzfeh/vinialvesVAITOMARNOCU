@@ -15,8 +15,9 @@
             <img src="src/img/logo_small.png" alt="logo Responsiva" id="headerLogo">
         </picture>
         <div id="search">
-            <input type="text" name="search" id="textSearch" placeholder="O que estamos procurando?">
-            <img src="src/img/search.png" alt="Ícone de pesquisa">
+            <input type="text" name="search" id="textSearch" placeholder="O que estamos procurando?" oninput="showSuggestions()">
+            <div id="suggestions" class="autocomplete-suggestions"></div>
+            <img src="src/img/search.png" alt="Ícone de pesquisa" onclick="searchProduct()">
         </div>
 
         <div id="profile">

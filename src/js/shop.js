@@ -1,6 +1,7 @@
 var divProducts = document.body.querySelector('div.products');
 var cardCounter = document.body.querySelector('div#cartCounter');
 var divPopup = document.body.querySelector('aside#popup');
+var suggestionsDiv = document.body.querySelector('div#suggestions');
 class Product{
     constructor(id, name, price, image, category, brand, buyed){
         this.id = id;
@@ -77,7 +78,29 @@ const cancelBuy= (id) =>{
     });
     renderProducts(products);
 }
+
+const popupBuy= (id) =>{
+    products = products.map((x) =>{
+        if(x.id == id){
+            x.buyed = true;
+        }
+        return x;
+    });
+    renderProducts(products);
+    show(id);
+}
+const popupCancelBuy= (id) =>{
+    products = products.map((x) =>{
+        if(x.id == id){
+            x.buyed = false;
+        }
+        return x;
+    });
+    renderProducts(products);
+    show(id);
+}
 const show = (id) =>{
+    divPopup.innerHTML = '';
     let product = products.find((x) => x.id == id);
 
     let element = document.createElement('div');
@@ -85,7 +108,10 @@ const show = (id) =>{
     element.innerHTML = `
         <button class="hidePopup" onclick="hidePopup()">X</button>
         <h1>Página de Produto</h1>
-        <img src="${product.image}" alt="imagem do produto">
+        <div class="productImageDiv">
+            <img src="${product.image}" alt="imagem do produto" class="popupImage">
+            <img src="${product.buyed?"src/img/cancel.png":"src/img/buy.png"}" alt="comprar" class="buy" onclick="${product.buyed?`popupCancelBuy(${product.id})`:`popupBuy(${product.id})`}">
+        </div>
         <p class="productName">${product.name}</p>
         <p><span class="bold">Categoria:</span> ${product.category}</p>
         <p><span class="bold">Marca:</span> ${product.brand}</p>
@@ -94,12 +120,76 @@ const show = (id) =>{
         `;
     divPopup.append(element);
 
-    divPopup.classList.toggle('show');
+    if(!divPopup.classList.contains('show')) divPopup.classList.add('show');
+    
 }
 const hidePopup = () =>{
-    divPopup.classList.toggle('show');
-    divPopup.innerHTML = '';
+    divPopup.classList.remove('show');
+}
+
+const showSuggestions = () =>{
+    let input = document.body.querySelector('input#textSearch');
+    let valueUser = input.value.toLowerCase();
+    suggestionsDiv.innerHTML = '';
+
+    if(input){
+        const suggestions = products.map((x) => x.name);
+        const filteredSuggestions = suggestions.filter(suggestion => suggestion.toLowerCase().includes(valueUser));
+
+        if(filteredSuggestions.length > 0){
+        filteredSuggestions.forEach(suggestion => {
+            const div = document.createElement('div');
+            div.classList.add('autocomplete-suggestion');
+            div.textContent = suggestion;
+            div.onclick = () => {
+                input.value = suggestion;
+                suggestionsDiv.innerHTML = '';
+            };
+            suggestionsDiv.appendChild(div);
+        })
+    }else{
+        const div = document.createElement('div');
+        div.classList.add('autocomplete-suggestion');
+        div.textContent = 'Não há produtos com este nome :(';
+        suggestionsDiv.appendChild(div);
+    }
+}
+}
+
+const searchProduct = () =>{
+    let input = document.body.querySelector('input#textSearch');
+    let valueUser = input.value;
+
+    let product = products.find((x) => x.name == valueUser);
+    if(product){
+        show(product.id);
+        input.value = '';
+    }
+    
 }
 
 
+document.addEventListener('click', function(event) {
+    if (!document.getElementById('search').contains(event.target)) {
+        document.getElementById('suggestions').innerHTML = '';
+    }
+});
 
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const getUrlParameter = (name) => {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    
+    const productName = getUrlParameter('product');
+    if (productName) {
+        let product = products.find((x) => x.name.toLowerCase() == productName.toLowerCase());
+        if (product) {
+            show(product.id); 
+        }
+    }
+});
