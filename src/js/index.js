@@ -59,7 +59,7 @@ const generateProducts = () =>{
         }else{
             const div = document.createElement('div');
             div.classList.add('autocomplete-suggestion');
-            div.textContent = 'Não há produtos com este nome :(';
+            div.textContent = `Não há nenhum ${valueUser} :(`;
             suggestionsDiv.appendChild(div);
         }
     }

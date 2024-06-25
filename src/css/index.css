@@ -57,7 +57,7 @@ header{
     overflow-y: auto;
     z-index: 1000;
     width: 100%;
-    top: 48px;
+    top: 44px;
 }
 .autocomplete-suggestion {
     padding: 10px;
